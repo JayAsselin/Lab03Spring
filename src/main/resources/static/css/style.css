@@ -1,0 +1,10 @@
+img{
+    width: 100%;
+    height: 500px;
+}
+.nav{
+    background-color: #003b45;
+}
+.nav-link{
+    color: #fec552;
+}

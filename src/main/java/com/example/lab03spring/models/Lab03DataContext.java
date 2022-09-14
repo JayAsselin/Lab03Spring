@@ -1,12 +1,10 @@
 package com.example.lab03spring.models;
 
-import lombok.Getter;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-@Getter
 public class Lab03DataContext {
 
     private static List<Cours> listeCours = new ArrayList<Cours>() {
@@ -32,6 +30,18 @@ public class Lab03DataContext {
 
     public void inscrire(Inscription element) {
         listeInscription.add(element);
+    }
+
+    public static List<Cours> getListeCours() {
+        return listeCours;
+    }
+
+    public static List<Etudiant> getListeEtudiants() {
+        return listeEtudiants;
+    }
+
+    public static List<Inscription> getListeInscription() {
+        return listeInscription;
     }
 
     public static Cours getCours(String numero) {

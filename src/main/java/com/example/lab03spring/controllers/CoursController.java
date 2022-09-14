@@ -17,8 +17,10 @@ public class CoursController {
     private static final Lab03DataContext dataContext = new Lab03DataContext();
 
     private Panier getPanier(HttpSession session) {
-        // TODO: 9/13/2022 Cette méthode doit retourner le panier stocké dans la variable session
-        //  s'il existe, sinon elle retourne un panier vide.
+        /*
+         TODO: 9/13/2022 Cette méthode doit retourner le panier stocké dans la variable session
+          s'il existe, sinon elle retourne un panier vide.
+        */
         Panier panier;
         if(session.getAttribute("panier") != null){
             panier = (Panier)session.getAttribute("panier");
@@ -31,18 +33,22 @@ public class CoursController {
 
     @GetMapping("/liste")
     public ModelAndView liste() {
-        // TODO: 9/13/2022 Cette méthode doit afficher la vue "ListeCours.jsp" en lui envoyant la
-        //  liste des cours du dataContext. Cette méthode est appelée suite à un clic sur le lien
-        //  "choix de cours".
-        return new ModelAndView("views/listeCours");
+        /*
+         TODO: 9/13/2022 Cette méthode doit afficher la vue "ListeCours.jsp" en lui envoyant la
+          liste des cours du dataContext. Cette méthode est appelée suite à un clic sur le lien
+          "choix de cours".
+        */
+        return new ModelAndView("views/listeCours", "cours", dataContext.getListeCours());
     }
 
     @PostMapping("/ajouer/{id}")
     public String ajouter(@PathVariable String id, HttpSession session) {
-        // TODO: 9/13/2022 Cette méthode est appelée suite à un clic sur le lien "Choisir". Elle
-        //  reçoit le numéro de cours comme paramètre et ajoute le cours qui possède ce numéro au
-        //  panier qui est stocké dans la variable session. Après elle remet le panier dans la
-        //  session pour la prochaine transaction. Elle nous redirige vers la méthode "liste".
+        /*
+         TODO: 9/13/2022 Cette méthode est appelée suite à un clic sur le lien "Choisir". Elle
+          reçoit le numéro de cours comme paramètre et ajoute le cours qui possède ce numéro au
+          panier qui est stocké dans la variable session. Après elle remet le panier dans la
+          session pour la prochaine transaction. Elle nous redirige vers la méthode "liste".
+        */
         // recupere le cours passer en parametre
         Cours cours = dataContext.getCours(id);
         // recupere le panier de session

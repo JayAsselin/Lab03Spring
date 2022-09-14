@@ -10,7 +10,7 @@ import java.util.List;
 @Setter
 public class Inscription {
 
-    private  int id;
+//    private  int id;
     private int nas; // nas est le id?
     private Calendar dateInscription;
     private List<Cours> listeCours; // Une liste ou un string?
