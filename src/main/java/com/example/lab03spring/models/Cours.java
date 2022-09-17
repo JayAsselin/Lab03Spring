@@ -16,7 +16,8 @@ public class Cours {
     public Cours() {
     }
 
-    public Cours(String numero, String intituler, int nombreCredit, int session, String nomFichier) {
+    public Cours(String numero, String intituler, int nombreCredit, int session,
+                 String nomFichier) {
         this.numero = numero;
         this.intituler = intituler;
         this.nombreCredit = nombreCredit;

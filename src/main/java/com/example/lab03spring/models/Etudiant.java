@@ -7,7 +7,6 @@ import lombok.Setter;
 @Setter
 public class Etudiant {
 
-//    private int id; // nas est le id?
     private int nas;
     private String nom;
     private String prenom;

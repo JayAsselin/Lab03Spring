@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="layouts/_layout"
+      xmlns:th="http://www.thymeleaf.org">
+
+<div layout:fragment="content">
+    <div th:with="httpStatus=${T(org.springframework.http.HttpStatus).valueOf(#response.status)}">
+        <h1>Code d'erreur: <span th:text="${httpStatus}"></span></h1>
+        <h1>Message d'erreur: <span th:text="${httpStatus.reasonPhrase}"></span></h1>
+        <a href="/">Retourner a l'accueil</a>
+    </div>
+</div>
+</html>

@@ -1,12 +1,12 @@
 package com.example.lab03spring.controllers;
 
 import com.example.lab03spring.models.Cours;
+import com.example.lab03spring.models.ErrorModel;
 import com.example.lab03spring.models.Lab03DataContext;
 import com.example.lab03spring.models.Panier;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpSession;
@@ -21,14 +21,18 @@ public class CoursController {
          TODO: 9/13/2022 Cette méthode doit retourner le panier stocké dans la variable session
           s'il existe, sinon elle retourne un panier vide.
         */
-        Panier panier;
-        if(session.getAttribute("panier") != null){
-            panier = (Panier)session.getAttribute("panier");
+        try {
+            Panier panier;
+            if(session.getAttribute("panier") != null){
+                panier = (Panier)session.getAttribute("panier");
+            }
+            else{
+                panier = new Panier();
+            }
+            return panier;
+        } catch (Exception e) {
+            throw new RuntimeException(e.getMessage());
         }
-        else{
-            panier = new Panier();
-        }
-        return panier;
     }
 
     @GetMapping("/liste")
@@ -38,10 +42,14 @@ public class CoursController {
           liste des cours du dataContext. Cette méthode est appelée suite à un clic sur le lien
           "choix de cours".
         */
-        return new ModelAndView("views/listeCours", "cours", dataContext.getListeCours());
+        try {
+            return new ModelAndView("views/listeCours", "cours", dataContext.getListeCours());
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
     }
 
-    @PostMapping("/ajouer/{id}")
+    @GetMapping("/ajouer/{id}")
     public String ajouter(@PathVariable String id, HttpSession session) {
         /*
          TODO: 9/13/2022 Cette méthode est appelée suite à un clic sur le lien "Choisir". Elle
@@ -49,14 +57,18 @@ public class CoursController {
           panier qui est stocké dans la variable session. Après elle remet le panier dans la
           session pour la prochaine transaction. Elle nous redirige vers la méthode "liste".
         */
-        // recupere le cours passer en parametre
-        Cours cours = dataContext.getCours(id);
-        // recupere le panier de session
-        Panier panier = this.getPanier(session);
-        // ajoute le cours au panier
-        panier.ajouterCours(cours);
-        // remet le panier dans la variable session
-        session.setAttribute("panier", panier);
-        return "redirect:/liste";
+        try {
+            // recupere le cours passer en parametre
+            Cours cours = dataContext.getCours(id);
+            // recupere le panier de session
+            Panier panier = this.getPanier(session);
+            // ajoute le cours au panier
+            panier.ajouterCours(cours);
+            // remet le panier dans la variable session
+            session.setAttribute("panier", panier);
+            return "redirect:/liste";
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
     }
 }

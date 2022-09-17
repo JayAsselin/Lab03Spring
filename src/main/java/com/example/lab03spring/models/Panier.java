@@ -18,7 +18,7 @@ public class Panier {
     }
 
     public void supprimerCours(String numero){
-        liste.removeIf(n -> Objects.equals(n.getNumero(), numero));
+        liste.removeIf(n -> n.getNumero().equals(numero));
     }
 
     public void viderPanier(){

@@ -8,3 +8,11 @@ img{
 .nav-link{
     color: #fec552;
 }
+
+.card-text{
+    text-align: justify;
+}
+
+.text-content{
+    text-align: justify;
+}

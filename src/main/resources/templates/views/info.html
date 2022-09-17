@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="layouts/_layout">
+<body>
+<div layout:fragment="content">
+    <div>
+        <p>Votre numero de session est:
+            <span th:text="${#session.id}"></span> ">
+        </p>
+        <p>
+            Le contenue de session est <span th:text="${session.name}"></span>
+        </p>
+    </div>
+</div>
+</body>
+</html>

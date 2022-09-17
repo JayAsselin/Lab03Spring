@@ -8,6 +8,10 @@ public class HomeController {
 
     @GetMapping("/")
     public String accueil(){
-        return "index";
+        try {
+            return "index";
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
     }
 }

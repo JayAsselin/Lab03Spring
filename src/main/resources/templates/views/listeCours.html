@@ -1,12 +1,46 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="layouts/_layout">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
+<html lang="en" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="layouts/_layout"
+      xmlns:th="http://www.thymeleaf.org">
 <body>
 <div layout:fragment="content">
-    <p>Liste cours page</p>
+    <div class="text-sm-center">
+        <h1 class="h2 mt-4 mb-6">Liste cours page</h1>
+        <div class="container">
+            <table class="table table-sm-info">
+                <thead>
+                <tr>
+                    <th scope="col">Numero du cours</th>
+                    <th scope="col">Nom</th>
+                    <th scope="col">Nombre de credit</th>
+                    <th scope="col">Nombre de session</th>
+                    <th scope="col">Detail</th>
+                    <th scope="col"></th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:if="${cours.isEmpty()}">
+                    <td colspan="5">Aucun cours disponible</td>
+                </tr>
+                <tr th:each="cour : ${cours}">
+                    <td th:text="${cour.numero}"></td>
+                    <td th:text="${cour.intituler}"></td>
+                    <td th:text="${cour.nombreCredit}"></td>
+                    <td th:text="${cour.session}"></td>
+                    <td><a th:href="@{detailsNumcours.pdf}" target="_blank">
+                        <input type="button" class="btn btn-info" th:value="${cour.nomFichier}"></a>
+                    </td>
+                    <td><a th:href="@{/ajouter(id=${cour.numero})}"><input type="button" class="btn btn-success"
+                                                                   value="Choisir">
+                    </a></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="text-center">
+            <a href="/panier"><input class="btn btn-link me-2" type="button" value="Voir mes choix"></a>
+            <a href="/"><input class="btn btn-link ms-2" type="button" value="Retour a l'accueil"></a>
+        </div>
+    </div>
 </div>
 </body>
 </html>

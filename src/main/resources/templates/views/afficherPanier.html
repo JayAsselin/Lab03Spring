@@ -1,10 +1,28 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
+<html lang="en" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="layouts/_layout"
+      xmlns:th="http://www.thymeleaf.org">
 <body>
-
+<div layout:fragment="content">
+    <div class="text-sm-center">
+        <div class="row row-cols-1 row-cols-md-3 g-4 mb-5">
+            <div class="col-sm">
+                <div class="card mt-5 ms-5" th:if="${session.isEmpty()}">
+                    <div class="card-body"><h1 class="card-title h5">Le panier est vide</h1></div>
+                </div>
+                    <div class="card">
+                    <div class="card-body">
+<!--                        not working propertly, shows empty card even when panier is empty-->
+                        <h1 class="card-title h5 mb-4">Info sur le cours</h1>
+                        <p class="card-text" th:text="${session.panier}"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="text-center">
+            <a href="/liste"><input class="btn btn-link me-2" type="button" value="Choix de cours"></a>
+            <a href="/"><input class="btn btn-link ms-2" type="button" value="Retour a l'accueil"></a>
+        </div>
+    </div>
+</div>
 </body>
 </html>
