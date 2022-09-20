@@ -6,7 +6,6 @@ import com.example.lab03spring.models.Panier;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpSession;
@@ -15,6 +14,9 @@ import javax.servlet.http.HttpSession;
 public class CoursController {
 
     private static final Lab03DataContext dataContext = new Lab03DataContext();
+    private Panier panier;
+    public CoursController() {
+    }
 
     private Panier getPanier(HttpSession session) {
         /*
@@ -22,12 +24,12 @@ public class CoursController {
           s'il existe, sinon elle retourne un panier vide.
         */
         try {
-            Panier panier;
             if(session.getAttribute("panier") != null){
                 panier = (Panier)session.getAttribute("panier");
             }
-            else{
+            else {
                 panier = new Panier();
+                session.setAttribute("panier", panier);
             }
             return panier;
         } catch (Exception e) {
@@ -36,20 +38,21 @@ public class CoursController {
     }
 
     @GetMapping("/liste")
-    public ModelAndView liste() {
+    public ModelAndView liste(HttpSession session) {
         /*
          TODO: 9/13/2022 Cette méthode doit afficher la vue "ListeCours.jsp" en lui envoyant la
           liste des cours du dataContext. Cette méthode est appelée suite à un clic sur le lien
           "choix de cours".
         */
         try {
+            panier = getPanier(session);
             return new ModelAndView("views/listeCours", "cours", dataContext.getListeCours());
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
     }
 
-    @GetMapping("/liste/ajouter/{id}")
+    @GetMapping("/liste/{id}")
     public String ajouter(@PathVariable("id") String id, HttpSession session) {
         /*
          TODO: 9/13/2022 Cette méthode est appelée suite à un clic sur le lien "Choisir". Elle

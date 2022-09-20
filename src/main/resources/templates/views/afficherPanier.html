@@ -5,9 +5,9 @@
 <div layout:fragment="content">
     <div class="text-sm-center">
         <h1 class="h2 mt-4">Contenue du panier</h1>
+        <h2 class="h3 mt-4" th:if="${session.panier.getListe().size() eq 0}">Desoler le panier est vide</h2>
         <div class="row">
-            <div class="col col-sm-4" th:each="cours : ${session.panier.liste}"
-                 th:unless="${session eq null}">
+            <div class="col col-sm-4" th:each="cours : ${session.panier.getListe()}">
                     <div class="card mt-5">
                         <div class="card-header">
                             <h1 class="card-title h4">Info sur le cours</h1>
@@ -18,7 +18,9 @@
                         <p class="card-text"><strong>Nom du cours:</strong> <span th:text="${cours.intituler}">N/A</span></p>
                         <p class="card-text"><strong>Donne:</strong> <span th:text="${cours.nombreCredit}">N/A</span> credits</p>
                         <p class="card-text"><strong>Duree:</strong> <span th:text="${cours.session}">N/A</span> sessions</p>
-                        <a th:href="@{/panier/supprimer/{id}(id=${cours.numero})}" class="btn btn-danger">Supprimer</a>
+                        <a th:href="@{/panier/supprimer/{id}(id=${cours.numero})}" class="btn btn-danger"
+                           onclick="return confirm('Voulez-vous vraiment supprimer ce cours?')">Supprimer
+                        </a>
                     </div>
                 </div>
             </div>

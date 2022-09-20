@@ -18,9 +18,6 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr th:if="${cours.isEmpty()}">
-                    <td colspan="5">Aucun cours disponible</td>
-                </tr>
                 <tr th:each="cour : ${cours}">
                     <td th:text="${cour.numero}"></td>
                     <td th:text="${cour.intituler}"></td>
@@ -29,7 +26,7 @@
                     <td><a th:href="@{detailsNumcours.pdf}" target="_blank">
                         <input type="button" class="btn btn-doc" th:value="${cour.nomFichier}"></a>
                     </td>
-                    <td><a th:href="@{/liste/ajouter/{id}(id=${cour.numero})}"><input type="button"
+                    <td><a th:href="@{/liste/{id}(id=${cour.numero})}"><input type="button"
                                                                                       class="btn btn-success"
                                                                                       value="Choisir">
                     </a></td>
