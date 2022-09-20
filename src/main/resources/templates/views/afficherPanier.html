@@ -4,24 +4,32 @@
 <body>
 <div layout:fragment="content">
     <div class="text-sm-center">
-        <div class="row row-cols-1 row-cols-md-3 g-4 mb-5">
-            <div class="col-sm">
-                <div class="card mt-5 ms-5" th:if="${session.isEmpty()}">
-                    <div class="card-body"><h1 class="card-title h5">Le panier est vide</h1></div>
-                </div>
-                    <div class="card">
-                    <div class="card-body">
-<!--                        not working propertly, shows empty card even when panier is empty-->
-                        <h1 class="card-title h5 mb-4">Info sur le cours</h1>
-                        <p class="card-text" th:text="${session.panier}"></p>
+        <h1 class="h2 mt-4">Contenue du panier</h1>
+        <div class="row">
+            <div class="col col-sm-4" th:each="cours : ${session.panier.liste}"
+                 th:unless="${session eq null}">
+                    <div class="card mt-5">
+                        <div class="card-header">
+                            <h1 class="card-title h4">Info sur le cours</h1>
+                            <h2 class="card-subtitle h5 text-muted">Numero du cours:
+                                <span th:text="${cours.numero}">N/A</span></h2>
+                        </div>
+                    <div class="card-body infoCours">
+                        <p class="card-text"><strong>Nom du cours:</strong> <span th:text="${cours.intituler}">N/A</span></p>
+                        <p class="card-text"><strong>Donne:</strong> <span th:text="${cours.nombreCredit}">N/A</span> credits</p>
+                        <p class="card-text"><strong>Duree:</strong> <span th:text="${cours.session}">N/A</span> sessions</p>
+                        <a th:href="@{/panier/supprimer/{id}(id=${cours.numero})}" class="btn btn-danger">Supprimer</a>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="text-center">
-            <a href="/liste"><input class="btn btn-link me-2" type="button" value="Choix de cours"></a>
-            <a href="/"><input class="btn btn-link ms-2" type="button" value="Retour a l'accueil"></a>
-        </div>
+    </div>
+    <div class="text-center mt-5 mb-5">
+        <a href="/validation"><input class="btn btn-links me-2" type="button" value="Valider mes choix"></a>
+        <a href="/liste"><input class="btn btn-links me-2" type="button" value="Choix de cours"></a>
+        <a href="/"><input class="btn btn-links ms-2" type="button" value="Retour a l'accueil"></a>
+        <a href="/viderPanier"><input class="btn btn-links ms-2" type="button" value="Vider le panier"
+                                      onclick="return confirm('Voulez-vous vraiment supprimer le contenue du panier?')"></a>
     </div>
 </div>
 </body>

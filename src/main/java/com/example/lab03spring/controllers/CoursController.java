@@ -1,12 +1,12 @@
 package com.example.lab03spring.controllers;
 
 import com.example.lab03spring.models.Cours;
-import com.example.lab03spring.models.ErrorModel;
 import com.example.lab03spring.models.Lab03DataContext;
 import com.example.lab03spring.models.Panier;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpSession;
@@ -49,8 +49,8 @@ public class CoursController {
         }
     }
 
-    @GetMapping("/ajouer/{id}")
-    public String ajouter(@PathVariable String id, HttpSession session) {
+    @GetMapping("/liste/ajouter/{id}")
+    public String ajouter(@PathVariable("id") String id, HttpSession session) {
         /*
          TODO: 9/13/2022 Cette méthode est appelée suite à un clic sur le lien "Choisir". Elle
           reçoit le numéro de cours comme paramètre et ajoute le cours qui possède ce numéro au

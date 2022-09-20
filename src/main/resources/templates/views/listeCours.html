@@ -4,7 +4,7 @@
 <body>
 <div layout:fragment="content">
     <div class="text-sm-center">
-        <h1 class="h2 mt-4 mb-6">Liste cours page</h1>
+        <h1 class="h2 mt-4 mb-5">Liste cours page</h1>
         <div class="container">
             <table class="table table-sm-info">
                 <thead>
@@ -27,19 +27,20 @@
                     <td th:text="${cour.nombreCredit}"></td>
                     <td th:text="${cour.session}"></td>
                     <td><a th:href="@{detailsNumcours.pdf}" target="_blank">
-                        <input type="button" class="btn btn-info" th:value="${cour.nomFichier}"></a>
+                        <input type="button" class="btn btn-doc" th:value="${cour.nomFichier}"></a>
                     </td>
-                    <td><a th:href="@{/ajouter(id=${cour.numero})}"><input type="button" class="btn btn-success"
-                                                                   value="Choisir">
+                    <td><a th:href="@{/liste/ajouter/{id}(id=${cour.numero})}"><input type="button"
+                                                                                      class="btn btn-success"
+                                                                                      value="Choisir">
                     </a></td>
                 </tr>
                 </tbody>
             </table>
         </div>
-        <div class="text-center">
-            <a href="/panier"><input class="btn btn-link me-2" type="button" value="Voir mes choix"></a>
-            <a href="/"><input class="btn btn-link ms-2" type="button" value="Retour a l'accueil"></a>
-        </div>
+    </div>
+    <div class="text-center mb-5">
+        <a href="/panier"><input class="btn btn-links me-2" type="button" value="Voir mes choix"></a>
+        <a href="/"><input class="btn btn-links ms-2" type="button" value="Retour a l'accueil"></a>
     </div>
 </div>
 </body>

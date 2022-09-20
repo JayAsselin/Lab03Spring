@@ -43,7 +43,7 @@ public class Lab03DataContext {
 
     private static final List<Inscription> listeInscription = new ArrayList<Inscription>();
 
-    public void inscrire(Inscription element) {
+    public static void inscrire(Inscription element) {
         listeInscription.add(element);
     }
 

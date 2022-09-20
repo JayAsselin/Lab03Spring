@@ -1,3 +1,7 @@
+body{
+    background-color: #97d5c9;
+}
+
 img{
     width: 100%;
     height: 500px;
@@ -8,11 +12,27 @@ img{
 .nav-link{
     color: #fec552;
 }
-
-.card-text{
+.card-header{
+    background-color: #003b45;
+    color: white;
+}
+.infoCours{
+    background-color: #fec552;
+}
+.indexCard{
+    background-color: #fec552;
+}
+.textJustified{
     text-align: justify;
 }
 
 .text-content{
     text-align: justify;
+}
+.btn-doc{
+    background-color: #fec552;
+}
+.btn-links{
+    background-color: #003b45;
+    color: white;
 }

@@ -5,13 +5,20 @@ import lombok.Setter;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 @Getter
 @Setter
 public class Panier {
 
-    private static List<Cours> liste = new ArrayList<Cours>();
+    public List<Cours> getListe() {
+        return liste;
+    }
+
+    private final List<Cours> liste;
+
+    public Panier() {
+        this.liste = new ArrayList<Cours>();
+    }
 
     public void ajouterCours(Cours cours){
         liste.add(cours);
