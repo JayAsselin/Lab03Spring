@@ -7,11 +7,9 @@
         <h1> Page d’erreur</h1>
         <h2>Attention, une erreur s’est produite dans la ressource demandée. Veuillez contacter le support
             technique. </h2>
-<!--        <div>-->
     <div th:with="httpStatus=${T(org.springframework.http.HttpStatus).valueOf(#response.status)}">
         <a href="/">Retourner à l'accueil</a>
         <p>Code d'erreur: <span th:text="${httpStatus}"></span></p>
-<!--        <p>Code d'erreur: <span th:text="${model.message}.valueOf(#response.status)"></span></p>-->
 
         <p> L'URL source d'erreur : <span th:text="${model.url}"></span></p>
         <p>Le message d'erreur :<span th:text="${model.exception.message}"></span></p>

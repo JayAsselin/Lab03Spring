@@ -27,10 +27,12 @@
         </div>
     </div>
     <div class="text-center mt-5 mb-5">
-        <a href="/validation"><input class="btn btn-links me-2" type="button" value="Valider mes choix"></a>
+        <a href="/validation" th:unless="${session.panier.liste.size() eq 0}"><input class="btn btn-links me-2" type="button" value="Valider mes choix"></a>
         <a href="/liste"><input class="btn btn-links me-2" type="button" value="Choix de cours"></a>
         <a href="/"><input class="btn btn-links ms-2" type="button" value="Retour a l'accueil"></a>
-        <a href="/viderPanier"><input class="btn btn-links ms-2" type="button" value="Vider le panier"
+        <a href="/viderPanier" th:unless="${session.panier.liste.size() eq 0}"><input class="btn btn-links ms-2"
+                                                                                  type="button"
+                                                         value="Vider le panier"
                                       onclick="return confirm('Voulez-vous vraiment supprimer le contenue du panier?')"></a>
     </div>
 </div>

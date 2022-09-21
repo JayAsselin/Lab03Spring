@@ -5,16 +5,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.Date;
-import java.util.List;
 
 @Controller
 public class InscriptionController {
@@ -103,7 +98,7 @@ public class InscriptionController {
     }
 
     @GetMapping("/confirmation/{id}")
-    public ModelAndView confirmer(@PathVariable("id") int id, HttpSession session, Model model) {
+    public ModelAndView confirmer(@PathVariable("id") String id, HttpSession session, Model model) {
         /*
          TODO: 9/13/2022 Cette méthode répond à un clic sur le lien confirmer qui correspond à
           l'étudiant choisi de la liste. Cette méthode crée une inscription pour cette étudiant
@@ -112,13 +107,14 @@ public class InscriptionController {
         */
         try {
             Etudiant etudiant =
-                    dataContext.getListeEtudiants().stream().filter(e->e.getNas() == id).findFirst().get();
+                    dataContext.getListeEtudiants().stream().filter(e->e.getNas().equals(id)).findFirst().get();
             Calendar cal = Calendar.getInstance();
             cal.getTime();
             Panier panier = this.getPanier(session);
             Inscription inscription = new Inscription(etudiant.getNas(), cal, panier.getListe());
             dataContext.inscrire(inscription);
             model.addAttribute("inscription", inscription);
+            this.viderPanier(session);
             return new ModelAndView("views/confirmation");
         } catch (Exception e) {
             throw new RuntimeException(e);

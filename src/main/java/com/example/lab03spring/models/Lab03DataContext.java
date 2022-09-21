@@ -28,15 +28,15 @@ public class Lab03DataContext {
 
     private static final List<Etudiant> listeEtudiants = new ArrayList<Etudiant>() {
         {
-            add(new Etudiant(829392, "Haley", "Argine", "(791) 297-1035", "1343 Kendra " +
+            add(new Etudiant("829392", "Haley", "Argine", "(791) 297-1035", "1343 Kendra " +
                     "Trafficway", "J0R M4K", "Argine_Haley@gmail.com", 'F'));
-            add(new Etudiant(820814, "Kub", "Léon", "(318) 654-8267", "6480 Keyshawn Loaf", "G3K V9T"
+            add(new Etudiant("820814", "Kub", "Léon", "(318) 654-8267", "6480 Keyshawn Loaf", "G3K V9T"
                     , "Noe_Kub8@yahoo.com", 'M'));
-            add(new Etudiant(898468, "Grady", "Coline", "(366) 285-3468", "86843 Schoen Parkway",
+            add(new Etudiant("898468", "Grady", "Coline", "(366) 285-3468", "86843 Schoen Parkway",
                     "K4K K1B", "Coline66@yahoo.com", 'F'));
-            add(new Etudiant(678714, "Ernser", "Sophie", "(736) 697-6152", "159 Kunde Throughway"
+            add(new Etudiant("678714", "Ernser", "Sophie", "(736) 697-6152", "159 Kunde Throughway"
                     , "V7T J5Z", "Sophie.Ernser58@gmail.com", 'F'));
-            add(new Etudiant(671982, "Towne", "Martial", "(241) 978-2686", "46723 Ratke Vista",
+            add(new Etudiant("671982", "Towne", "Martial", "(241) 978-2686", "46723 Ratke Vista",
                     "B3H L3B", "Martial.Towne@yahoo.com", 'M'));
         }
     };
@@ -63,5 +63,11 @@ public class Lab03DataContext {
         Cours cours;
         cours = listeCours.stream().filter(c -> c.getNumero().equals(id)).findFirst().get();
         return cours;
+    }
+    public static void addCours(Cours cours) {
+        listeCours.add(cours);
+    }
+    public static void addEtudiant(Etudiant etudiant){
+        listeEtudiants.add(etudiant);
     }
 }

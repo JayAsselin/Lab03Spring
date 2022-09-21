@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="layouts/_layout"
+      xmlns:th="http://www.thymeleaf.org">
+
+<div layout:fragment="content">
+    <div class="text-center">
+        <h1 class="h2 mt-4 mb-4">Formulaire d'ajout de cours</h1>
+    </div>
+    <div class="sidebar">
+        <a href="/login" class="btn btn-doc">Home</a>
+        <a href="/login/adminPanel/addCours" class="btn btn-doc">Ajouter un cours</a>
+        <a href="/login/adminPanel/addEtudiant" class="btn btn-doc">Ajouter un etudiant</a>
+        <a href="/logout" class="btn btn-danger">Deconnection</a>
+    </div>
+    <div class="page-content">
+        <form class="row g-3 w-50 center" th:action="@{/login/adminPanel/addCours}" th:object="${newCours}"
+              method="post">
+            <div class="col-md-6">
+                <label for="numero" class="form-label">Numero du cours</label>
+                <input type="text" class="form-control" id="numero" th:field="*{numero}">
+                <span th:if="${#fields.hasErrors('numero')}" th:errors="*{numero}" class="formErrors"></span>
+            </div>
+            <div class="col-md-6">
+                <label for="intituler" class="form-label">Nom du cours</label>
+                <input type="text" class="form-control" id="intituler" th:field="*{intituler}">
+                <span th:if="${#fields.hasErrors('intituler')}" th:errors="*{intituler}"
+                      class="formErrors"></span>
+            </div>
+            <div class="col-md-2">
+                <label for="credit" class="form-label">Nombre de credit</label>
+                <input type="text" class="form-control" id="credit" th:field="*{nombreCredit}">
+                <span th:if="${#fields.hasErrors('nombreCredit')}" th:errors="*{nombreCredit}"
+                      class="formErrors"></span>
+            </div>
+            <div class="col-md-2">
+                <label for="session" class="form-label">Durer du cours</label>
+                <input type="text" class="form-control" id="session" th:field="*{session}">
+                <span th:if="${#fields.hasErrors('session')}" th:errors="*{session}" class="formErrors"></span>
+            </div>
+            <div class="col-md-4">
+                <label for="planCours" class="form-label">Plan de cours (fichier)</label>
+                <input type="text" class="form-control" id="planCours" th:field="*{nomFichier}">
+                <span th:if="${#fields.hasErrors('nomFichier')}" th:errors="*{nomFichier}"
+                      class="formErrors"></span>
+            </div>
+            <div class="col-12">
+                <button type="submit" class="btn btn-primary">Ajouter</button>
+                <button type="reset" class="btn btn-secondary">Annuler</button>
+            </div>
+        </form>
+    </div>
+</div>
+</html>

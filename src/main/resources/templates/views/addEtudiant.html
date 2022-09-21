@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="layouts/_layout"
+      xmlns:th="http://www.thymeleaf.org">
+
+<div layout:fragment="content">
+    <div class="text-center">
+        <h1 class="h2 mt-4 mb-4">Formulaire d'ajout d'étudiant</h1>
+    </div>
+    <div class="sidebar">
+        <a href="/login" class="btn btn-doc">Home</a>
+        <a href="/login/adminPanel/addCours" class="btn btn-doc">Ajouter un cours</a>
+        <a href="/login/adminPanel/addEtudiant" class="btn btn-doc">Ajouter un etudiant</a>
+        <a href="/logout" class="btn btn-danger">Deconnection</a>
+    </div>
+    <div class="page-content">
+        <form class="row g-3 w-50 center" th:action="@{/login/adminPanel/addEtudiant}"
+              th:object="${newEtudiant}" method="post">
+            <div class="col-md-6">
+                <label for="nas" class="form-label">Numero d'assurance social</label>
+                <input type="text" class="form-control" id="nas" th:field="*{nas}">
+                <span th:if="${#fields.hasErrors('nas')}" th:errors="*{nas}"
+                      class="formErrors"></span>
+            </div>
+            <div class="col-md-6">
+                <label for="nom" class="form-label">Nom</label>
+                <input type="text" class="form-control" id="nom" th:field="*{nom}">
+                <span th:if="${#fields.hasErrors('nom')}" th:errors="*{nom}"
+                      class="formErrors"></span>
+            </div>
+            <div class="col-md-6">
+                <label for="prenom" class="form-label">Prenom</label>
+                <input type="text" class="form-control" id="prenom" th:field="*{prenom}">
+                <span th:if="${#fields.hasErrors('prenom')}" th:errors="*{prenom}"
+                      class="formErrors"></span>
+            </div>
+            <div class="col-md-6">
+                <label for="telephone" class="form-label">Telephone</label>
+                <input type="text" class="form-control" id="telephone" th:field="*{telephone}">
+                <span th:if="${#fields.hasErrors('telephone')}" th:errors="*{telephone}"
+                      class="formErrors"></span>
+            </div>
+            <div class="col-md-3">
+                <label for="adresse" class="form-label">Adresse</label>
+                <input type="text" class="form-control" id="adresse" th:field="*{adresse}">
+                <span th:if="${#fields.hasErrors('adresse')}" th:errors="*{adresse}"
+                      class="formErrors"></span>
+            </div>
+            <div class="col-md-2">
+                <label for="codePostal" class="form-label">Code postal</label>
+                <input type="text" id="codePostal" class="form-control" th:field="*{codePostal}">
+                <span th:if="${#fields.hasErrors('codePostal')}" th:errors="*{codePostal}"
+                      class="formErrors"></span>
+            </div>
+            <div class="col-md-3">
+                <label for="courriel" class="form-label">Courriel</label>
+                <input type="text" class="form-control" id="courriel" th:field="*{courriel}">
+                <span th:if="${#fields.hasErrors('courriel')}" th:errors="*{courriel}"
+                      class="formErrors"></span>
+            </div>
+            <div class="col-md-4">
+                <div class="form-check">
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="masculin"
+                               th:field="*{genre}" value="H">
+                        <label class="form-check-label" for="masculin">
+                            Masculin
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="feminin"
+                               th:field="*{genre}" value="F"
+                               checked>
+                        <label class="form-check-label" for="feminin">
+                            Feminin
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12">
+                <button type="submit" class="btn btn-primary">Ajouter</button>
+                <button type="reset" class="btn btn-secondary">Annuler</button>
+            </div>
+        </form>
+    </div>
+</div>
+</html>

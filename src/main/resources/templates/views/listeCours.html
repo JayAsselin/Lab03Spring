@@ -23,8 +23,8 @@
                     <td th:text="${cour.intituler}"></td>
                     <td th:text="${cour.nombreCredit}"></td>
                     <td th:text="${cour.session}"></td>
-                    <td><a th:href="@{detailsNumcours.pdf}" target="_blank">
-                        <input type="button" class="btn btn-doc" th:value="${cour.nomFichier}"></a>
+                    <td><a th:href="@{detailsNumcours.pdf}" target="_blank" class="btn btn-doc" th:value="${cour.nomFichier}">
+                        <span th:text="${cour.nomFichier}"></span></a>
                     </td>
                     <td><a th:href="@{/liste/{id}(id=${cour.numero})}"><input type="button"
                                                                                       class="btn btn-success"
